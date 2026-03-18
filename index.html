@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jornal Escolar Cândido Luz</title>
+    <style>
+        /* =========================================
+           VARIÁVEIS DE COR E TEMA (CSS CUSTOM PROPERTIES)
+           ========================================= */
+        :root {
+            --cor-fundo: #f4f7f6;
+            --cor-texto: #2c3e50;
+            --cor-primaria: #0a3d62; /* Azul Escuro */
+            --cor-secundaria: #f6b93b; /* Dourado/Amarelo */
+            
+            /* NOVAS VARIÁVEIS PARA RESOLVER A LEGIBILIDADE */
+            --cor-titulo: #0a3d62; 
+            --cor-logo: #0a3d62; 
+
+            --cor-cabecalho: #ffffff;
+            --cor-card-bg: #ffffff;
+            --cor-borda: #dcdde1;
+            --cor-rodape-bg: #0a3d62;
+            --cor-rodape-texto: #ffffff;
+            --cor-hover: #eccc68;
+            --sombra: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transicao: all 0.3s ease;
+        }
+
+        /* Variáveis para o Modo Escuro */
+        body.dark-mode {
+            --cor-fundo: #1e272e;
+            --cor-texto: #d2dae2;
+            --cor-primaria: #192a56; 
+            --cor-secundaria: #f39c12;
+
+            /* NO MODO ESCURO, TÍTULOS FICAM CLAROS E A LOGO GANHA DESTAQUE */
+            --cor-titulo: #d2dae2; 
+            --cor-logo: #f39c12; 
+
+            --cor-cabecalho: #2f3640;
+            --cor-card-bg: #2f3640;
+            --cor-borda: #353b48;
+            --cor-rodape-bg: #000224;
+            --cor-rodape-texto: #d2dae2;
+            --sombra: 0 4px 6px rgba(0, 0, 0, 0.5);
+        }
+
+        /* =========================================
+           RESET BÁSICO
+           ========================================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--cor-fundo);
+            color: var(--cor-texto);
+            line-height: 1.6;
+            transition: var(--transicao);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* =========================================
+           BANNER DE AVISO (BETA/MANUTENÇÃO)
+           ========================================= */
+        #beta-banner {
+            background-color: var(--cor-secundaria);
+            color: #000;
+            text-align: center;
+            padding: 10px 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            z-index: 1000;
+            position: relative;
+        }
+
+        #beta-banner button {
+            background: rgba(0, 0, 0, 0.1);
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: var(--transicao);
+        }
+
+        #beta-banner button:hover {
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        /* =========================================
+           CABEÇALHO E NAVEGAÇÃO
+           ========================================= */
+        header {
+            background-color: var(--cor-cabecalho);
+            padding: 20px 5%;
+            box-shadow: var(--sombra);
+            transition: var(--transicao);
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            border-bottom: 2px solid var(--cor-borda);
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            font-size: 2.5rem;
+            color: var(--cor-logo); /* ALTERADO PARA A NOVA VARIÁVEL */
+        }
+
+        .logo-text h1 {
+            color: var(--cor-logo); /* ALTERADO PARA A NOVA VARIÁVEL */
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .logo-text p {
+            font-size: 0.85rem;
+            color: var(--cor-texto);
+            opacity: 0.8;
+        }
+
+        .header-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 10px;
+        }
+
+        #relogio-data {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--cor-texto);
+        }
+
+        .btn-dark-mode {
+            background-color: var(--cor-primaria);
+            color: #fff;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.8rem;
+            transition: var(--transicao);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .btn-dark-mode:hover {
+            background-color: var(--cor-secundaria);
+            color: #000;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        nav ul li a {
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.95rem;
+            color: var(--cor-texto);
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: var(--transicao);
+        }
+
+        nav ul li a:hover {
+            background-color: var(--cor-primaria);
+            color: #fff;
+        }
+
+        /* =========================================
+           CONTEÚDO PRINCIPAL (MAIN)
+           ========================================= */
+        main {
+            width: 90%;
+            max-width: 1200px;
+            margin: 40px auto;
+        }
+
+        /* Seção Hero (Destaque Principal) */
+        .hero {
+            background-color: var(--cor-card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--sombra);
+            margin-bottom: 40px;
+            display: flex;
+            flex-direction: column;
+            transition: var(--transicao);
+        }
+
+        @media(min-width: 768px) {
+            .hero {
+                flex-direction: row;
+                height: 400px;
+            }
+        }
+
+        .hero-img {
+            flex: 1;
+            background-image: url('https://images.unsplash.com/photo-1564069114553-7215e1ff1890?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');
+            background-size: cover;
+            background-position: center;
+            min-height: 250px;
+        }
+
+        .hero-content {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .categoria-tag {
+            background-color: var(--cor-secundaria);
+            color: #000;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            display: inline-block;
+            align-self: flex-start;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .hero-content h2 {
+            font-size: 2rem;
+            color: var(--cor-titulo); /* ALTERADO PARA A NOVA VARIÁVEL */
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: var(--cor-texto);
+        }
+
+        .btn-leia-mais {
+            background-color: var(--cor-primaria);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: bold;
+            display: inline-block;
+            align-self: flex-start;
+            transition: var(--transicao);
+        }
+
+        .btn-leia-mais:hover {
+            background-color: var(--cor-hover);
+            color: #000;
+        }
+
+        /* Grade de Notícias Secundárias */
+        .secao-titulo {
+            font-size: 1.8rem;
+            color: var(--cor-titulo); /* ALTERADO PARA A NOVA VARIÁVEL */
+            border-bottom: 3px solid var(--cor-secundaria);
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+            display: inline-block;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .news-card {
+            background-color: var(--cor-card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--sombra);
+            transition: var(--transicao);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+        }
+
+        .news-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .news-card-content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .news-data {
+            font-size: 0.8rem;
+            color: var(--cor-texto);
+            opacity: 0.7;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .news-card h3 {
+            font-size: 1.2rem;
+            color: var(--cor-titulo); /* ALTERADO PARA A NOVA VARIÁVEL */
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .news-card p {
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .news-card .btn-leia-mais {
+            font-size: 0.85rem;
+            padding: 8px 15px;
+            text-align: center;
+        }
+
+        /* =========================================
+           RODAPÉ (FOOTER)
+           ========================================= */
+        footer {
+            background-color: var(--cor-rodape-bg);
+            color: var(--cor-rodape-texto);
+            padding: 40px 5% 20px;
+            text-align: center;
+            margin-top: 50px;
+            transition: var(--transicao);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .footer-col h4 {
+            color: var(--cor-secundaria);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .footer-col p, .footer-col ul li {
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--cor-secundaria);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        /* Responsividade Adicional */
+        @media(max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+            .header-info {
+                align-items: center;
+            }
+            .logo-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="beta-banner">
+        <span>⚠️ Bem-vindo ao Jornal Escolar Cândido Luz! Este site está em fase beta/manutenção. Algumas áreas podem estar indisponíveis.</span>
+        <button onclick="fecharBanner()">Entendi</button>
+    </div>
+
+    <header>
+        <div class="header-top">
+            <div class="logo-container">
+                <div class="logo-icon">📖</div>
+                <div class="logo-text">
+                    <h1>Jornal Escolar Cândido Luz</h1>
+                    <p>Notícias da Escola Luiz Cândido da Luz - Florianópolis/SC</p>
+                </div>
+            </div>
+            
+            <div class="header-info">
+                <div id="relogio-data">Carregando data e hora...</div>
+                <button class="btn-dark-mode" id="btn-dark-mode">
+                    <span id="icone-tema">🌙</span> Modo Escuro
+                </button>
+            </div>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#noticias">Principais Notícias</a></li>
+                <li><a href="noticias.html">Todas as notícias</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="inicio" class="hero">
+            <div class="hero-img"></div>
+            <div class="hero-content">
+                <span class="categoria-tag">Tecnologia & Ciência</span>
+                <h2>Feira de Ciências de Fim de Ano: Projetos Inovadores Surpreendem a Comunidade!</h2>
+                <p>Alunos do 9º ano da Escola Luiz Cândido da Luz apresentaram projetos de robótica sustentável criados com materiais recicláveis recolhidos nas praias de Florianópolis. A maquete de um "Barco Limpador de Baías" foi o grande destaque do evento.</p>
+                <a href="#noticias" class="btn-leia-mais">Ler Matéria Completa</a>
+            </div>
+        </section>
+
+        <section id="noticias">
+            <h2 class="secao-titulo">Últimas Atualizações</h2>
+            <div class="news-grid">
+                
+                <article class="news-card">
+                    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Projeto de ciências e robótica">
+                    <div class="news-card-content">
+                        <span class="news-data">26 de Agosto de 2026</span>
+                        <h3>Feira de Ciências: Sustentabilidade em Foco</h3>
+                        <p>Com o apoio dos professores, a turma 92 desenvolveu a maquete de um "Barco Limpador de Baías". O projeto, movido a energia solar, simula a identificação e coleta de resíduos na orla, destinando o material reciclável para a COMCAP.</p>
+                        <a href="#esportes" class="btn-leia-mais">Ver os Projetos</a>
+                    </div>
+                </article>
+
+                <article class="news-card">
+                    <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Alunos jogando basquete">
+                    <div class="news-card-content">
+                        <span class="news-data">Ontem, às 14:30</span>
+                        <h3>Alunos brilham no JESF e trazem medalhas inéditas</h3>
+                        <p>Nossas equipes de basquete e vôlei deram um show na etapa municipal dos Jogos Escolares de Florianópolis. O vôlei feminino conquistou o 3º lugar, enquanto o basquete masculino garantiu a prata e a vaga para o JESC.</p>
+                        <a href="#esportes" class="btn-leia-mais">Ver Resultados</a>
+                    </div>
+                </article>
+
+                <article class="news-card">
+                    <img src="https://images.unsplash.com/photo-1525926477800-7a3afac89674?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Quadra poliesportiva pintada">
+                    <div class="news-card-content">
+                        <span class="news-data">15 de Novembro de 2026</span>
+                        <h3>Reforma da Quadra: Um espaço renovado para todos</h3>
+                        <p>Graças à união da APP (Associação de Pais e Professores) e da direção, a quadra poliesportiva ganhou pequenos reparos e uma nova pintura, revitalizando o espaço que é utilizado por todos desde 2015.</p>
+                        <a href="#esportes" class="btn-leia-mais">Ver Fotos</a>
+                    </div>
+                </article>
+
+                <article class="news-card">
+                    <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Professora na sala de aula">
+                    <div class="news-card-content">
+                        <span class="news-data">16 de Março de 2026</span>
+                        <h3>Entrevista: O segredo das aulas de Matemática</h3>
+                        <p>Conversamos com a professora Nasarita sobre como ela transformou a disciplina mais temida na matéria favorita das turmas do ensino fundamental.</p>
+                        <a href="#opiniao" class="btn-leia-mais">Ler Entrevista</a>
+                    </div>
+                </article>
+
+                <article class="news-card">
+                    <img src="https://images.unsplash.com/photo-1533158326339-7f3cf2404354?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Cultura Açoriana - Renda de Bilro">
+                    <div class="news-card-content">
+                        <span class="news-data">10 de Março de 2026</span>
+                        <h3>Projeto Cultura Manezinha resgata raízes açorianas</h3>
+                        <p>Oficinas de Renda de Bilro, culinária ilhoa e contação de lendas do folclore de Franklin Cascaes movimentaram as aulas de História e Artes da escola.</p>
+                        <a href="#cultura" class="btn-leia-mais">Saiba Mais</a>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+    </main>
+
+    <footer id="contato">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Sobre o Jornal</h4>
+                <p>O Jornal Escolar Cândido Luz é um trabalho escolar desenvolvido por alunos da Turma 81, focado em trazer transparência, cultura e informação para a comunidade escolar.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Links Rápidos</h4>
+                <ul>
+                    <li><a href="#">Portal do Aluno</a></li>
+                    <li><a href="#">Calendário Escolar 2026</a></li>
+                    <li><a href="#">Cardápio da Merenda</a></li>
+                    <li><a href="#">Regimento Escolar</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contato</h4>
+                <p>📍 Rod. Armando Calil Bulos - Vargem Grande, Florianópolis - SC</p>
+                <p>✉️ ebm.luizcandido@sme.pmf.sc.gov.br</p>
+                <p>📞 (48) 3333-0000</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; <span id="ano-atual"></span> Jornal Escolar Cândido Luz. Todos os direitos reservados.</p>
+            <p>Projeto de Redação - Equipe Editorial: Alunos da Turma 81: Luiz Miguel, Pedro Jorge, Michael, Daniel, André. Site em fase de testes/manutenção.</p>
+        </div>
+    </footer>
+
+    <script>
+        // 1. Relógio e Data em Tempo Real no Cabeçalho
+        function atualizarRelogio() {
+            const display = document.getElementById('relogio-data');
+            const dataAtual = new Date();
+            
+            const opcoesData = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const dataFormatada = dataAtual.toLocaleDateString('pt-BR', opcoesData);
+            
+            const horaFormatada = dataAtual.toLocaleTimeString('pt-BR');
+            
+            // Capitaliza a primeira letra do dia da semana
+            const dataFinal = dataFormatada.charAt(0).toUpperCase() + dataFormatada.slice(1);
+            
+            display.textContent = `${dataFinal} - ${horaFormatada} (Florianópolis/SC)`;
+        }
+
+        // Atualiza a cada 1 segundo e executa imediatamente
+        setInterval(atualizarRelogio, 1000);
+        atualizarRelogio();
+
+        // Insere o ano atual no rodapé
+        document.getElementById('ano-atual').textContent = new Date().getFullYear();
+
+        // 2. Fechar o Banner de Boas-Vindas/Beta
+        function fecharBanner() {
+            const banner = document.getElementById('beta-banner');
+            banner.style.display = 'none';
+        }
+
+        // 3. Sistema de Modo Escuro (Dark Mode)
+        const btnDarkMode = document.getElementById('btn-dark-mode');
+        const iconeTema = document.getElementById('icone-tema');
+        const body = document.body;
+
+        // Verifica se o usuário já tem uma preferência salva no LocalStorage
+        const temaSalvo = localStorage.getItem('tema');
+        if (temaSalvo === 'escuro') {
+            body.classList.add('dark-mode');
+            iconeTema.textContent = '☀️';
+            btnDarkMode.innerHTML = '<span id="icone-tema">☀️</span> Modo Claro';
+        }
+
+        btnDarkMode.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            
+            // Verifica se a classe foi adicionada ou removida para mudar o botão
+            if (body.classList.contains('dark-mode')) {
+                btnDarkMode.innerHTML = '<span id="icone-tema">☀️</span> Modo Claro';
+                localStorage.setItem('tema', 'escuro'); // Salva preferência
+            } else {
+                btnDarkMode.innerHTML = '<span id="icone-tema">🌙</span> Modo Escuro';
+                localStorage.setItem('tema', 'claro'); // Salva preferência
+            }
+        });
+    </script>
+</body>
+</html>

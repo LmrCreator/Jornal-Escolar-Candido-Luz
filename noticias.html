@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notícias - Jornal Escolar Cândido Luz</title>
+    <style>
+        /* =========================================
+           REAPROVEITAMENTO DAS VARIÁVEIS DO INDEX
+           ========================================= */
+        :root {
+            --cor-fundo: #f4f7f6;
+            --cor-texto: #2c3e50;
+            --cor-titulo: #0a3d62; 
+            --cor-logo: #0a3d62; 
+            --cor-primaria: #0a3d62;
+            --cor-secundaria: #f6b93b;
+            --cor-cabecalho: #ffffff;
+            --cor-card-bg: #ffffff;
+            --cor-borda: #dcdde1;
+            --cor-rodape-bg: #0a3d62;
+            --cor-rodape-texto: #ffffff;
+            --cor-hover: #eccc68;
+            --sombra: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transicao: all 0.3s ease;
+        }
+
+        body.dark-mode {
+            --cor-fundo: #1e272e;
+            --cor-texto: #d2dae2;
+            --cor-titulo: #d2dae2; 
+            --cor-logo: #f39c12; 
+            --cor-primaria: #192a56; 
+            --cor-secundaria: #f39c12;
+            --cor-cabecalho: #2f3640;
+            --cor-card-bg: #2f3640;
+            --cor-borda: #353b48;
+            --cor-rodape-bg: #000224;
+            --cor-rodape-texto: #d2dae2;
+        }
+
+        /* =========================================
+           RESET E PADRONIZAÇÃO
+           ========================================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--cor-fundo);
+            color: var(--cor-texto);
+            line-height: 1.6;
+            transition: var(--transicao);
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* =========================================
+           CABEÇALHO (IDÊNTICO AO INDEX)
+           ========================================= */
+        header {
+            background-color: var(--cor-cabecalho);
+            padding: 20px 5%;
+            box-shadow: var(--sombra);
+            transition: var(--transicao);
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            border-bottom: 2px solid var(--cor-borda);
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+
+        .logo-container { display: flex; align-items: center; gap: 15px; }
+        .logo-icon { font-size: 2.5rem; color: var(--cor-logo); }
+        .logo-text h1 { color: var(--cor-logo); font-size: 1.8rem; text-transform: uppercase; }
+        .logo-text p { font-size: 0.85rem; opacity: 0.8; }
+
+        .header-info { display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
+        #relogio-data { font-size: 0.9rem; font-weight: 600; }
+
+        .btn-dark-mode {
+            background-color: var(--cor-primaria);
+            color: #fff;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: var(--transicao);
+        }
+
+        nav ul { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
+        nav ul li a {
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.95rem;
+            padding: 5px 10px;
+            transition: var(--transicao);
+        }
+        nav ul li a:hover { color: var(--cor-secundaria); }
+
+        /* =========================================
+           BARRA DE PESQUISA E FILTROS
+           ========================================= */
+        .search-section {
+            background-color: var(--cor-primaria);
+            padding: 40px 5%;
+            text-align: center;
+            color: #fff;
+        }
+
+        .search-container {
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-container input {
+            width: 100%;
+            padding: 15px 25px;
+            border-radius: 30px;
+            border: none;
+            font-size: 1.1rem;
+            box-shadow: var(--sombra);
+        }
+
+        .search-container button {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: var(--cor-secundaria);
+            border: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* =========================================
+           ESTRUTURA DE NOTÍCIAS (CONTEÚDO EXTENSO)
+           ========================================= */
+        .noticias-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 5%;
+        }
+
+        .artigo-completo {
+            background-color: var(--cor-card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--sombra);
+            margin-bottom: 60px;
+            transition: var(--transicao);
+        }
+
+        .artigo-img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+        }
+
+        .artigo-corpo {
+            padding: 40px;
+        }
+
+        .artigo-meta {
+            display: flex;
+            gap: 20px;
+            font-size: 0.9rem;
+            color: var(--cor-primaria);
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .artigo-corpo h2 {
+            font-size: 2.2rem;
+            color: var(--cor-titulo);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .artigo-texto {
+            font-size: 1.1rem;
+            text-align: justify;
+        }
+
+        .artigo-texto p {
+            margin-bottom: 20px;
+        }
+
+        .artigo-texto blockquote {
+            border-left: 5px solid var(--cor-secundaria);
+            padding: 15px 25px;
+            margin: 30px 0;
+            background-color: rgba(246, 185, 59, 0.1);
+            font-style: italic;
+            font-size: 1.2rem;
+        }
+
+        /* =========================================
+           RODAPÉ
+           ========================================= */
+        footer {
+            background-color: var(--cor-rodape-bg);
+            color: var(--cor-rodape-texto);
+            padding: 40px 5% 20px;
+            text-align: center;
+            transition: var(--transicao);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        /* Responsividade */
+        @media(max-width: 768px) {
+            .artigo-img { height: 250px; }
+            .artigo-corpo { padding: 20px; }
+            .artigo-corpo h2 { font-size: 1.6rem; }
+            .header-top { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-top">
+            <div class="logo-container">
+                <div class="logo-icon">📖</div>
+                <div class="logo-text">
+                    <h1>Jornal Escolar Cândido Luz</h1>
+                    <p>Arquivo Completo de Notícias</p>
+                </div>
+            </div>
+            
+            <div class="header-info">
+                <div id="relogio-data">Carregando...</div>
+                <button class="btn-dark-mode" id="btn-dark-mode">
+                    <span id="icone-tema">🌙</span> Modo Escuro
+                </button>
+            </div>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="#noticia-1">Ciência</a></li>
+                <li><a href="#noticia-2">Esportes</a></li>
+                <li><a href="#noticia-3">Infraestrutura</a></li>
+                <li><a href="#noticia-4">Entrevistas</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="search-section">
+        <div class="search-container">
+            <h2>O que você está procurando hoje?</h2>
+            <br>
+            <input type="text" placeholder="Pesquisar notícias, projetos ou eventos...">
+            <button>Buscar</button>
+        </div>
+    </section>
+
+    <main class="noticias-container">
+
+        <article class="artigo-completo" id="noticia-1">
+            <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Feira de Ciências" class="artigo-img">
+            <div class="artigo-corpo">
+                <div class="artigo-meta">
+                    <span>Ciência & Meio Ambiente</span>
+                    <span>26 de Agosto de 2026</span>
+                </div>
+                <h2>Feira de Ciências: Robótica Sustentável Transforma Resíduos em Tecnologia</h2>
+                <div class="artigo-texto">
+                    <p>O pátio da Escola Luiz Cândido da Luz tornou-se palco de uma revolução tecnológica e ecológica na última quarta-feira. A aguardada Feira de Ciências de fim de ano superou as expectativas, apresentando soluções inovadoras para problemas globais, desenvolvidas localmente por nossos alunos.</p>
+                    
+                    <p>O grande destaque do evento foi o projeto da <strong>Turma 92</strong>. Sob orientação dos professores de Ciências e do núcleo de sustentabilidade, os estudantes desenvolveram um protótipo de <strong>Barco Limpador de Baías</strong>. O diferencial? Quase 90% da estrutura foi montada com plásticos e metais recolhidos pelos próprios alunos durante mutirões de limpeza nas praias do Norte da Ilha.</p>
+
+                    <blockquote>"Nosso objetivo não era apenas criar um robô, mas provar que o lixo que polui nossas águas pode ser a matéria-prima para a solução do problema", afirmou um dos integrantes do grupo de robótica.</blockquote>
+
+                    <p>O barco funciona através de painéis fotovoltaicos (energia solar) e possui um sistema de esteiras que identifica e recolhe resíduos sólidos flutuantes. Todo o material coletado pelo protótipo seria, em escala real, encaminhado diretamente para os postos da COMCAP, fechando o ciclo da logística reversa.</p>
+                </div>
+            </div>
+        </article>
+
+        <article class="artigo-completo" id="noticia-2">
+            <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Alunos Esportistas" class="artigo-img">
+            <div class="artigo-corpo">
+                <div class="artigo-meta">
+                    <span>Esportes</span>
+                    <span>Ontem, 14:30</span>
+                </div>
+                <h2>Garra e Superação: Cândido Luz Brilha nos Jogos Escolares (JESF)</h2>
+                <div class="artigo-texto">
+                    <p>O esporte escolar de Florianópolis testemunhou a ascensão de novos talentos vindos da nossa instituição. Durante a etapa municipal do JESF, nossas delegações de vôlei e basquete demonstraram técnica apurada e um espírito de equipe invejável.</p>
+                    
+                    <p>No vôlei feminino, a jornada foi emocionante. Após uma vitória estratégica contra uma forte equipe do Campeche, nossas meninas avançaram para a semifinal. Em um jogo disputadíssimo contra o Herondina M.Z., a equipe acabou sofrendo o revés, mas se recuperou rapidamente para garantir a <strong>medalha de bronze</strong> em uma disputa de terceiro lugar que levantou a torcida.</p>
+
+                    <p>Já no basquete masculino, o destaque foi a resiliência. O time chegou à final invicto, enfrentando a tradicional escola do Estreito. Apesar da derrota por poucos pontos em um último quarto eletrizante, o <strong>segundo lugar</strong> garantiu a classificação para a fase estadual (JESC). "Estamos orgulhosos. O importante não é apenas o troféu, mas o aprendizado e a moral que levamos para a próxima etapa", declarou o treinador de educação física da escola.</p>
+                </div>
+            </div>
+        </article>
+
+        <article class="artigo-completo" id="noticia-3">
+            <img src="https://images.unsplash.com/photo-1525926477800-7a3afac89674?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Reforma da Quadra" class="artigo-img">
+            <div class="artigo-corpo">
+                <div class="artigo-meta">
+                    <span>Infraestrutura escolar</span>
+                    <span>15 de Novembro de 2026</span>
+                </div>
+                <h2>A Força da Comunidade: Quadra Poliesportiva Ganha Nova Vida</h2>
+                <div class="artigo-texto">
+                    <p>O que antes era um piso desgastado pelo tempo, hoje é um reflexo do orgulho da nossa comunidade escolar. Após meses de planejamento e arrecadação, a reforma da quadra poliesportiva da Escola Luiz Cândido da Luz foi finalmente concluída.</p>
+                    
+                    <p>A iniciativa partiu de uma parceria sólida entre a <strong>APP (Associação de Pais e Professores)</strong> e a direção da escola. Com recursos limitados, a prioridade foi a segurança e a funcionalidade. Foi aplicada uma nova camada de pintura epóxi, ideal para a prática de esportes de alto impacto, e as demarcações para vôlei, futsal e basquete foram totalmente refeitas.</p>
+
+                    <p>A quadra, que serve a escola desde 2015, é o coração das atividades físicas e eventos culturais. "A nova pintura não é apenas estética; ela motiva os alunos a cuidarem mais do patrimônio que é deles", destacou a diretoria. O espaço já está liberado para o uso nas aulas de educação física e treinos das equipes escolares.</p>
+                </div>
+            </div>
+        </article>
+
+        <article class="artigo-completo" id="noticia-4">
+            <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Professora Nasarita" class="artigo-img">
+            <div class="artigo-corpo">
+                <div class="artigo-meta">
+                    <span>Educação & Perfil</span>
+                    <span>16 de Março de 2026</span>
+                </div>
+                <h2>Entrevista Exclusiva: Como a Profª Nasarita Desmistificou a Matemática</h2>
+                <div class="artigo-texto">
+                    <p>Para muitos alunos, a matemática é sinônimo de medo. Mas nos corredores da Escola Cândido Luz, uma professora tem mudado essa narrativa. Entrevistamos a <strong>Professora Nasarita</strong>, responsável por transformar fórmulas complexas em aprendizado prático e divertido.</p>
+                    
+                    <p>O segredo, segundo ela, reside na contextualização. "A matemática não vive apenas nos livros; ela está na música, na arquitetura de Florianópolis e na economia do lanche da escola", explica Nasarita. Ao utilizar jogos de tabuleiro adaptados e desafios lógicos reais, ela conseguiu elevar significativamente o índice de aprovação e, mais importante, o interesse genuíno das turmas.</p>
+
+                    <blockquote>"Quando o aluno entende o 'porquê' de um cálculo, o 'como' torna-se um prazer, não um fardo."</blockquote>
+                    
+                    <p>A entrevista completa, disponível em nosso podcast escolar, detalha os métodos pedagógicos que estão sendo estudados até por outras escolas da rede municipal.</p>
+                </div>
+            </div>
+        </article>
+
+    </main>
+
+    <footer>
+        <div class="footer-bottom">
+            <p>&copy; <span id="ano-atual"></span> Jornal Escolar Cândido Luz. Todos os direitos reservados.</p>
+            <p>Produzido pela Equipe Editorial da Turma 81.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Relógio e Data (Sincronizado com o Index)
+        function atualizarRelogio() {
+            const display = document.getElementById('relogio-data');
+            const dataAtual = new Date();
+            const opcoesData = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const dataFormatada = dataAtual.toLocaleDateString('pt-BR', opcoesData);
+            const horaFormatada = dataAtual.toLocaleTimeString('pt-BR');
+            const dataFinal = dataFormatada.charAt(0).toUpperCase() + dataFormatada.slice(1);
+            display.textContent = `${dataFinal} - ${horaFormatada}`;
+        }
+        setInterval(atualizarRelogio, 1000);
+        atualizarRelogio();
+
+        document.getElementById('ano-atual').textContent = new Date().getFullYear();
+
+        // Modo Escuro (Sincronizado com o Index)
+        const btnDarkMode = document.getElementById('btn-dark-mode');
+        const iconeTema = document.getElementById('icone-tema');
+        const body = document.body;
+
+        const temaSalvo = localStorage.getItem('tema');
+        if (temaSalvo === 'escuro') {
+            body.classList.add('dark-mode');
+            iconeTema.textContent = '☀️';
+            btnDarkMode.innerHTML = '<span id="icone-tema">☀️</span> Modo Claro';
+        }
+
+        btnDarkMode.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                btnDarkMode.innerHTML = '<span id="icone-tema">☀️</span> Modo Claro';
+                localStorage.setItem('tema', 'escuro');
+            } else {
+                btnDarkMode.innerHTML = '<span id="icone-tema">🌙</span> Modo Escuro';
+                localStorage.setItem('tema', 'claro');
+            }
+        });
+    </script>
+</body>
+</html>
