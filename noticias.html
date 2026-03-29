@@ -79,7 +79,14 @@
             margin-bottom: 15px;
         }
 
-        .logo-container { display: flex; align-items: center; gap: 15px; }
+        .site-logo {
+          width: 80px;
+          height: 80px;
+          border-radius: 50%;
+          object-fit: cover;
+          border: 1.5px solid var(--cor-logo);
+        }
+        
         .logo-icon { font-size: 2.5rem; color: var(--cor-logo); }
         .logo-text h1 { color: var(--cor-logo); font-size: 1.8rem; text-transform: uppercase; }
         .logo-text p { font-size: 0.85rem; opacity: 0.8; }
@@ -245,10 +252,12 @@
     <header>
         <div class="header-top">
             <div class="logo-container">
-                <div class="logo-icon">📖</div>
+                <div class="site-icon">
+                    <a href="index.html"><img src="logo-jornal.png" alt="Logo do Jornal"></a>
+                </div>
                 <div class="logo-text">
                     <h1>Jornal Escolar Cândido Luz</h1>
-                    <p>Arquivo Completo de Notícias</p>
+                    <p>Página Completa das Notícias</p>
                 </div>
             </div>
             
@@ -264,7 +273,7 @@
             <ul>
                 <li><a href="index.html">Início</a></li>
                 <li><a href="#noticia-1">Inauguração!</a></li>
-                <li><a href="#noticia-2">Entrevistas</a></li>
+                <li><a href="#noticia-2"><b>Em breve!</b></a></li>
             </ul>
         </nav>
     </header>
@@ -275,36 +284,32 @@
             <img src="https://img.freepik.com/vetores-premium/modelo-de-capa-de-jornal-antigo-realista_97886-2002.jpg" alt="Feira de Ciências" class="artigo-img">
             <div class="artigo-corpo">
                 <div class="artigo-meta">
-                    <span>Ciência & Meio Ambiente</span>
+                    <span>INAUGURAÇÃO!</span>
                     <span>26 de Agosto de 2026</span>
                 </div>
-                <h2>Bem vindo: A criação do Jornal Escolar Cândido Luz!</h2>
+                <h2>Da 81 para a Escola: Nasce o Jornal Escolar Cândido da Luz</h2>
                 <div class="artigo-texto">
-                    <p>A Escola Luiz Cândido da Luz ganhou nessa terça-feira um meio de divulgação de informações que foi idealizado inicialmente como um trabalho, para ser algo simples. O Jornal de acordo com a Professora irá superar as expectativas, apresentando uma ideia muito elaborada, desenvolvida por nossos alunos.</p>
+                    <p>Nesta terça-feira, a Escola Luiz Cândido da Luz inaugurou um novo e poderoso canal de comunicação. O que foi idealizado inicialmente apenas como um trabalho escolar simples, rapidamente se transformou em um projeto inovador desenvolvido pelos alunos da <b>Turma 81</b>.</p>
                     
-                    <p>O grupo de alunos que criou esse Jornal foi da <strong>Turma 81</strong>. Sob orientação da professora Luciane a a Coordenação, os estudantes desenvolveram um <strong>Jornal Escolar</strong>. O diferencial? Ele não é um simples Jornal, é bem elaborado e tem tanto uma versão digital em um site, esse aqui... e uma versão impressa!</p>
+                    <p>Sob a orientação da <b>professora Luciane</b> e o apoio da <b>Coordenação</b>, os estudantes superaram todas as expectativas. O grande diferencial do projeto? Ele deixou de ser um mero trabalho de sala de aula e ganhou vida no mundo real, contando com uma versão impressa e esta plataforma digital exclusiva que você está acessando agora!</p>
 
                     <blockquote>"Nós decidimos que não queríamos que fosse só um trabalho, mas sim realidade.</blockquote>
 
-                    <p>O Jornal tem a própria estrutura hierarquica, sendo bem organizado, dividio em um Presidente, uma Vice-Presidente, um Diretor de Jornalismo, um de Fotografia e alguns repórters. Toda essa estrutura faz o projeto funcionar, dos repórters até o Presidente e a Vice.</p>
+                    <p>Para fazer essa engrenagem funcionar com perfeição, o jornal atua com uma estrutura hierárquica e profissional. A equipe é muito bem organizada e dividida entre <b>Presidência, Vice-Presidência, Direção de Jornalismo, Direção de Fotografia</b> e uma equipe dedicada de <b>repórteres</b>. É o trabalho em conjunto, desde os repórteres até a presidência, que faz esse grande projeto acontecer.</p>
                 </div>
             </div>
         </article>
 
         <article class="artigo-completo" id="noticia-2">
-            <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Alunos Esportistas" class="artigo-img">
+            <img src=" alt="SEM IMAGENS" class="artigo-img">
             <div class="artigo-corpo">
                 <div class="artigo-meta">
-                    <span>Esportes</span>
-                    <span>Ontem, 14:30</span>
+                    <span>Grêmio e Monitoria.</span>
+                    <span>**/**/2026</span>
                 </div>
-                <h2>O Ano começou: E os alunos já tem reclamações sobre a escola.</h2>
+                <h2>Aguarde novas informações e tenha um bom dia!</h2>
                 <div class="artigo-texto">
-                    <p>Embora ainda no começo do ano letivo os alunos já tem reclamações sobre a infraestrutura da escola e sobre a falta de varidade na comida da merenda... Por que será que eles dizem isso?</p>
-                    
-                    <p>As principais reclamações dos alunos sobre a infraestrutura são sobre janelas, portas, chão quebrado embora não seja o principal motivo de reclamação.</p>
-
-                    <p>Já sobre a merenda a principal reclamação é que poderia ter mais variedade no que a escola serve de comida no intervalo, uma das reclamações mais específicas de um dos alunos foi: <blockquote>Essa escola só sabe servir Pão com Frango!?</blockquote><p>
+                    <p><blockquote>EM BREVE OS INTEGRANTES DO GRÊMIO ESTUDANTIL E MONITORIA!</blockquote><p>
                 </div>
             </div>
         </article>
