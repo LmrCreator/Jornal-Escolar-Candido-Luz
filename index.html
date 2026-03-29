@@ -131,9 +131,12 @@
             gap: 15px;
         }
 
-        .logo-icon {
-            font-size: 2.5rem;
-            color: var(--cor-logo); /* ALTERADO PARA A NOVA VARIÁVEL */
+        .site-logo {
+          width: 80px;
+          height: 80px;
+          border-radius: 50%;
+          object-fit: cover;
+          border: 1.5px solid var(--cor-logo);
         }
 
         .logo-text h1 {
@@ -423,14 +426,16 @@
 <body>
 
     <div id="beta-banner">
-        <span>⚠️ Bem-vindo ao Jornal Escolar Cândido Luz! Este site está em fase beta/manutenção. Algumas áreas podem estar indisponíveis ou em manutenção.</span>
+        <span>Bem-vindo ao Jornal Escolar Cândido Luz! Este site está em fase inicial. Algumas áreas podem estar incompletas ou indisponíveis.</span>
         <button onclick="fecharBanner()">Entendi</button>
     </div>
 
     <header>
         <div class="header-top">
             <div class="logo-container">
-                <div class="logo-icon">📖</div>
+                <div class="site-icon">
+                    <a href="index.html"><img src="logo-jornal.png" alt="Logo do Jornal"></a>
+                </div>
                 <div class="logo-text">
                     <h1>Jornal Escolar Cândido Luz</h1>
                     <h3>1ª edição (Inaugural)</h3>
@@ -482,25 +487,15 @@
                 </article>
 
                 <article class="news-card">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRYhtkITW4ETt5-Spcf2ItX-RZJPv5h3s3RQ&s" alt="Alunos argumentando sobre as reclamações">
+                    <img src="INDISPONÍVEL" alt="IMAGEM INDISPONÍVEL">
                     <div class="news-card-content">
-                        <span class="news-data">Em breve!</span>
-                        <h3>O Ano começou: E os alunos tem reclamações sobre a escola.</h3>
-                        <p>Embora ainda no começo do ano letivo os alunos já tem reclamações sobre a infraestrutura da escola e sobre a falta de varidade na comida da merenda... Por que será que eles dizem isso? Veja mais no botão abaixo!</p>
+                        <span class="news-data">** de ***** de 2026</span>
+                        <h3>Grêmio e Monitoria: Saiba quem são!</h3>
+                        <p>Em breve os integrantes do Grêmio Estudantil e Monitoria.</p>
                         <a href="noticias.html" class="btn-leia-mais">Ver mais</a>
                     </div>
                 </article>
-
-                <article class="news-card">
-                    <img src="https://images.unsplash.com/photo-1525926477800-7a3afac89674?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Quadra poliesportiva pintada">
-                    <div class="news-card-content">
-                        <span class="news-data">Em breve de 2026</span>
-                        <h3>Notícia futura!</h3>
-                        <p>Futuramente aqui terá uma notícia! Tenha um bom dia.</p>
-                        <a href="noticias.html" class="btn-leia-mais">Ver Fotos</a>
-                    </div>
-                </article>
-
+                
             </div>
         </section>
     </main>
@@ -524,12 +519,12 @@
                 <h4>Contato</h4>
                 <p>📍 Rod. Armando Calil Bulos - Vargem Grande, Florianópolis - SC</p>
                 <p>✉️ ebm.luizcandido@sme.pmf.sc.gov.br</p>
-                <p>📞 (48) 3369-3973</p>
+                <a href="wa.me/4833693973">📞 (48) 3369-3973</a>
             </div>
         </div>
         <div class="footer-bottom">
             <p>&copy; <span id="ano-atual"></span> Jornal Escolar Cândido Luz. Todos os direitos reservados.</p>
-            <p>Projeto de Redação - Equipe Editorial: Alunos da Turma 81: Luiz, Clara, Pedro, Daniel, Michael, André. Site em fase de testes/manutenção.</p>
+            <p>Projeto de Redação - Equipe Editorial: Alunos da Turma 81: Luiz, Clara, Pedro, Daniel, Michael, André. Site em fase inicial.</p>
         </div>
     </footer>
 
