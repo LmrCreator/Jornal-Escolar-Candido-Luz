@@ -81,7 +81,7 @@
            BANNER DE AVISO (BETA/MANUTENÇÃO)
            ========================================= */
         #beta-banner {
-            background-color: var(--cor-secundaria);
+            background-color: var(230, 28, 28, 0.9);
             color: #000;
             text-align: center;
             padding: 10px 20px;
@@ -96,7 +96,7 @@
         }
 
         #beta-banner button {
-            background: rgba(0, 0, 0, 0.1);
+            background: rgba(46, 0, 0, 0.1);
             border: none;
             padding: 5px 10px;
             border-radius: 4px;
@@ -106,7 +106,7 @@
         }
 
         #beta-banner button:hover {
-            background: rgba(0, 0, 0, 0.2);
+            background: rgba(0, 0, 0, 0.1);
         }
 
         /* =========================================
@@ -241,7 +241,7 @@
 
         .hero-img {
             flex: 1;
-            background-image: url ('https://lmrcreator.github.io/Jornal-Escolar-Candido-Luz/manchete-1.png');
+            background-image: url('https://lmrcreator.github.io/Jornal-Escolar-Candido-Luz/manchete-1.png');
             background-size: cover;
             background-position: center;
             min-height: 250px;
@@ -430,7 +430,7 @@
 <body>
 
     <div id="beta-banner">
-        <span>Bem-vindo ao Jornal Escolar Cândido Luz! Este site está em fase inicial. Algumas áreas podem estar incompletas ou indisponíveis.</span>
+        <span>Bem-vindo ao Jornal Escolar Cândido Luz! Se informe sobre tudo de importante que acontece na Escola(que está em Greve). Confira agora!</span>
         <button onclick="fecharBanner()">Entendi</button>
     </div>
 
@@ -466,15 +466,15 @@
     </header>
 
     <main>
-        <section id="inicio" class="hero">
-            <div class="hero-img"><img src="manchete-1.png" alt="Greve Escolar"></div>
-            <div class="hero-content">
-                <span class="categoria-tag">GREVE ESCOLAR!</span>
-                <h2><b>Greve Escolar: Profissionais da E.B.M. Luiz Cândido da Luz e entram em greve!</b></h2>
-                <p><b>Alguns dos profissionais da E.B.M. Luiz Cândido, junto com outros funcionários de outras escolas da rede municipal estão em greve em busca de melhores condições de trabalho!</b></p>
-                <a href="noticias.html" class="btn-leia-mais">Ler Matéria Completa</a>
-            </div>
-        </section>
+    <section id="inicio" class="hero">
+        <div class="hero-img"></div>
+        <div class="hero-content">
+            <span class="categoria-tag">GREVE ESCOLAR!</span>
+            <h2><b>Greve Escolar: Profissionais da E.B.M. Luiz Cândido da Luz e entram em greve!</b></h2>
+            <p><b>Alguns dos profissionais da E.B.M. Luiz Cândido, junto com outros funcionários de outras escolas da rede municipal estão em greve em busca de melhores condições de trabalho!</b></p>
+            <a href="noticias.html" class="btn-leia-mais">Ler Matéria Completa</a>
+        </div>
+    </section>
 
         <section id="noticias">
             <h2 class="secao-titulo">Principais Notícias!</h2>
@@ -500,7 +500,17 @@
                         <a href="noticias.html" class="btn-leia-mais">Ver mais</a>
                     </div>
                 </article>
-                             
+
+            <article class="news-card">
+                    <img src="manchete-3.png" alt="Professoras">
+                    <div class="news-card-content">
+                        <span class="news-data">24 de Abril de 2026</span>
+                        <h3>Entrevista com Profª sobre a greve.</h3>
+                        <p>Em uma entrevista com a Profª Nasarita, ela respondeu a nós algumas questões, como: O que é uma Greve? Por que a Greve acontece; Quais são as principais reindivicações da Greve?; entre outras questões. Confira agora!</p>
+                        <a href="noticias.html" class="btn-leia-mais">Ver mais</a>
+                    </div>
+                </article>
+                
             </div>
         </section>
     </main>
